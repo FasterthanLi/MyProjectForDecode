@@ -25,15 +25,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # 3rd-party apps
     'rest_framework',
     'corsheaders',
     'crispy_forms',  
-    'crispy_bootstrap5',    
+    'crispy_bootstrap5',
+    'rest_framework.authtoken',
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    'dj_rest_auth',
+    'dj_rest_auth.registration',    
     # Local
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
     'pages.apps.PagesConfig',
+    'API1.apps.Api1Config',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -125,10 +134,14 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 LOGIN_REDIRECT_URL = "home" 
 LOGOUT_REDIRECT_URL = "home" 
 
-REST_FRAMEWORK = { 
+REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.AllowAny",
-    ]
+        "rest_framework.permissions.IsAuthenticated",  
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [ 
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
 }
 
 CORS_ORIGIN_WHITELIST = (
@@ -143,4 +156,6 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"  
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" 
+
+SITE_ID = 1
 

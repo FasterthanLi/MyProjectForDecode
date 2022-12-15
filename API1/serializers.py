@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Post
+from posts.models import Post
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -11,6 +11,5 @@ class PostSerializer(serializers.ModelSerializer):
             "title",
             "body",
             "created_at",
-            "updated_at",
         )
         model = Post

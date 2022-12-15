@@ -8,6 +8,8 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("posts/", include("posts.urls")),
-    # path("api/v1/", include("posts.APIurls")), 
+    path("api/v1/", include("API1.urls")),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),  
     path("", include("pages.urls")),
 ]
