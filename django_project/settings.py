@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     'dj_rest_auth',
-    'dj_rest_auth.registration',    
+    'dj_rest_auth.registration',
+    'drf_spectacular',    
     # Local
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
@@ -136,12 +137,13 @@ LOGOUT_REDIRECT_URL = "home"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",  
+        "rest_framework.permissions.IsAuthenticated",
     ],
-    "DEFAULT_AUTHENTICATION_CLASSES": [ 
+    "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 CORS_ORIGIN_WHITELIST = (
@@ -158,4 +160,11 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" 
 
 SITE_ID = 1
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API Project",
+    "DESCRIPTION": "A sample blog to learn about DRF",
+    "VERSION": "1.0.0",
+    # OTHER SETTINGS
+}
 
