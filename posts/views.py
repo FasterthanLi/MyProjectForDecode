@@ -6,13 +6,15 @@ from django.urls import reverse_lazy, reverse
 from .models import Post
 from .forms import CommentForm
 from django.views import View
+from django.shortcuts import redirect
+
 
 class PostsListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = "post_list.html"
 
 
-class CommentGet(DetailView):  # new
+class CommentGet(DetailView):
     model = Post
     template_name = "post_detail.html"
 
@@ -22,7 +24,7 @@ class CommentGet(DetailView):  # new
         return context
 
 
-class CommentPost(SingleObjectMixin, FormView):  # new
+class CommentPost(SingleObjectMixin, FormView):
     model = Articlemodel = Post
     form_class = CommentForm
     template_name = "post_detail.html"
