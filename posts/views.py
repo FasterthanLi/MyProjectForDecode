@@ -3,13 +3,17 @@ from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import UpdateView, DeleteView, CreateView 
 from django.urls import reverse_lazy, reverse 
-from .models import Post
+from .models import Post, Category
 from .forms import CommentForm
 from django.views import View
-from django.shortcuts import redirect
+import logging
+from django.shortcuts import render
 
+
+logger = logging.getLogger(__name__)
 
 class PostsListView(LoginRequiredMixin, ListView):
+    logger.warning('New warning')
     model = Post
     template_name = "post_list.html"
 
@@ -80,9 +84,17 @@ class PostsDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class PostsCreateView(LoginRequiredMixin, CreateView): 
     model = Post
     template_name = "post_new.html"
-    fields = ("title", "body") 
+    fields = ("title", "body", "category") 
 
     def form_valid(self, form): 
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+class AddCategoryView(CreateView):
+	model = Category
+	template_name = 'add_category.html'
+	fields = '__all__'
     
+class CategoryDetailView(DetailView):
+    model = Post
+    template_name = "post_detail.html"
