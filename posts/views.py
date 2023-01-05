@@ -95,6 +95,6 @@ class AddCategoryView(CreateView):
 	template_name = 'add_category.html'
 	fields = '__all__'
     
-class CategoryDetailView(DetailView):
-    model = Post
-    template_name = "post_detail.html"
+class CategoryListView(ListView):
+    model = Category
+    template_name = "category_list.html"
