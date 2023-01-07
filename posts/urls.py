@@ -8,6 +8,7 @@ from .views import (
     PostsCreateView,
     AddCategoryView,
     CategoryListView,
+    CategoryClassView,
 )
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     path("", PostsListView.as_view(), name="post_list"),
     path('add_category/', AddCategoryView.as_view(), name='add_category'),
     path('category/', CategoryListView.as_view(), name='category_list'),
+    path('category/<str:cats>/', CategoryClassView.as_view(), name='category'),
 ]
 
 

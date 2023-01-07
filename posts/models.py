@@ -26,7 +26,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"pk": self.pk})
 
-
+    @property
+    def categories(self):
+        return ', '.join([x.name for x in self.category.all()])
 
 class Comment(models.Model): 
     article = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)

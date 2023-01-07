@@ -8,6 +8,7 @@ from .forms import CommentForm
 from django.views import View
 import logging
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
 logger = logging.getLogger(__name__)
@@ -98,3 +99,11 @@ class AddCategoryView(CreateView):
 class CategoryListView(ListView):
     model = Category
     template_name = "category_list.html"
+
+class CategoryClassView(TemplateView):
+    template_name = "categories.html"
+    def get_context_data(self, **kwargs):
+        cats = kwargs.get("cats")
+        category_posts = Category.objects.filter(name=cats.replace('-', ' '))
+        context = {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts}
+        return context
