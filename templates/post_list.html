@@ -14,7 +14,7 @@
     <div class="card-body">
       <!-- Changes start here! -->
       <p>{{ post.body }}</p>
-      <p>{{ post.categories }}</p>
+      <p><a href="">{{ post.categories }}</a></p>
       <a href="{% url 'post_edit' post.pk %}">Edit</a> |
       <a href="{% url 'post_delete' post.pk %}">Delete</a> |
       <a href="{% url 'category_list' %}">Category</a>
