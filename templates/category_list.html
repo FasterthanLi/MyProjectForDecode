@@ -4,7 +4,7 @@
 {% for category in category_list %}
   <div class="card">
     <div class="card-header">
-      <span class="font-weight-bold"><a href="">{{ category.name}}</a></span> &middot;
+      <span class="font-weight-bold"><a href="{% url 'category' cats=category.name %}">{{ category.name}}</a></span> &middot;
     </div>
   </div>
 {% endfor %}

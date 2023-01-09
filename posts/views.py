@@ -101,7 +101,9 @@ class CategoryListView(ListView):
     template_name = "category_list.html"
 
 class CategoryClassView(TemplateView):
+    model = Category
     template_name = "categories.html"
+    
     def get_context_data(self, **kwargs):
         cats = kwargs.get("cats")
         category_posts = Category.objects.filter(name=cats.replace('-', ' '))
