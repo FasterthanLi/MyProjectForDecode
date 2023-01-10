@@ -17,9 +17,9 @@ urlpatterns = [
     path("<int:pk>/delete/", PostsDeleteView.as_view(), name="post_delete"),
     path("new/", PostsCreateView.as_view(), name="post_new"), 
     path("", PostsListView.as_view(), name="post_list"),
-    path('add_category/', AddCategoryView.as_view(), name='add_category'),
-    path('category/', CategoryListView.as_view(), name='category_list'),
-    path('category/<str:cats>/', CategoryClassView.as_view(), name='category'),
+    path("add_category/", AddCategoryView.as_view(), name='add_category'),
+    path("category/", CategoryListView.as_view(), name='category_list'),
+    path("<slug:slug>", CategoryClassView.as_view(), name='category'),
 ]
 
 
